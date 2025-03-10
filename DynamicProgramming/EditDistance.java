@@ -12,15 +12,13 @@ class Solution {
             Arrays.fill(dp[i],-1);
         }
         // memorization calling
-        return rec(n-1,n2-1,s1,s2,dp);
+        return memorization(n-1,n2-1,s1,s2,dp);
         
     }
     
     
     // Memorization
-    public  int rec(int i,int j,String s1,String s2,int dp[][]){
-        
-        
+    public  int memorization(int i,int j,String s1,String s2,int dp[][]){        
         if(i<0 || j<0){
             if(i>=0)  return i+1;
             if(j>=0) return j+1;
@@ -31,12 +29,12 @@ class Solution {
         }
         
         if (s1.charAt(i) == s2.charAt(j)){
-            return dp[i][j]= rec(i-1,j-1,s1,s2,dp);
+            return dp[i][j]= memorization(i-1,j-1,s1,s2,dp);
         }
          
         //  insert remove replace 
         
-        return dp[i][j]= Math.min(1+rec(i,j-1,s1,s2,dp),Math.min(1+rec(i-1,j,s1,s2,dp),1+rec(i-1,j-1,s1,s2,dp)));
+        return dp[i][j]= Math.min(1+memorization(i,j-1,s1,s2,dp),Math.min(1+memorization(i-1,j,s1,s2,dp),1+rec(i-1,j-1,s1,s2,dp)));
     }
 }
 
